@@ -1,5 +1,8 @@
 import 'package:bookly_app/core/utils/assets.dart';
+import 'package:bookly_app/features/home/presentation/views/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 
 class SplachScreenBody extends StatefulWidget {
   const SplachScreenBody({super.key});
@@ -17,19 +20,18 @@ class _SplachScreenBodyState extends State<SplachScreenBody>
   @override
   void initState() {
     super.initState();
-    animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 1),
-    );
-    slidingAnimation = Tween<Offset>(
-      // x =0 , y=2
-      begin: const Offset(0, 2),
-      // end at same postion i build it in ui
-      end: Offset.zero,
-    ).animate(animationController);
+    // Initialize the animation
+    intailAnimation();
+    // navigate to home screen after 2 seconds in 500 ms with fade transition
+    navigateToHome();
+  }
 
-    // start the animation
-    animationController.forward();
+  // dispose the animation controller to free up resources to end the memory of this animation
+
+  @override
+  void dispose() {
+    super.dispose();
+    animationController.dispose();
   }
 
   @override
@@ -57,5 +59,33 @@ class _SplachScreenBodyState extends State<SplachScreenBody>
         ],
       ),
     );
+  }
+
+  // methods
+
+  void intailAnimation() {
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    );
+    slidingAnimation = Tween<Offset>(
+      // x =0 , y=2
+      begin: const Offset(0, 2),
+      // end at same postion i build it in ui
+      end: Offset.zero,
+    ).animate(animationController);
+
+    // start the animation
+    animationController.forward();
+  }
+
+  void navigateToHome() {
+    Future.delayed(const Duration(seconds: 2), () {
+      Get.to(
+        () => const HomeScreen(),
+        transition: Transition.fade,
+        duration: const Duration(milliseconds: 500),
+      );
+    });
   }
 }
