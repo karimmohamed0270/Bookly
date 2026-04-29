@@ -9,7 +9,11 @@ class SplachScreenBody extends StatelessWidget {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [Image.asset(AssetsData.logo)],
+        children: [
+          Image.asset(AssetsData.logo),
+          SizedBox(height: 8),
+          const Text("Read More Books", style: TextStyle(fontSize: 22)),
+        ],
       ),
     );
   }
