@@ -1,4 +1,5 @@
-import 'package:bookly_app/features/home/presentation/views/widgets/book_card_listview.dart';
+import 'package:bookly_app/core/utils/styles.dart';
+import 'package:bookly_app/features/home/presentation/views/widgets/featured_book_card_listview.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,17 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Column(
-        children: [CustomAppBar(), SizedBox(height: 5), BookCardListview()],
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CustomAppBar(),
+          SizedBox(height: 5),
+          BookCardListview(),
+          SizedBox(height: 5),
+          Padding(
+            padding: EdgeInsets.only(left: 14.0, top: 8.0),
+            child: Text("Best Seller", style: Styles.textSizemedium),
+          ),
+        ],
       ),
     );
   }
