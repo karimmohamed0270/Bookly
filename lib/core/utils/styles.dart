@@ -1,4 +1,5 @@
 import 'package:bookly_app/constants.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 //  abstract class to hold all the styles in the app and make it easier to change them in the future
@@ -24,6 +25,7 @@ abstract class Styles {
   static const textStyle14 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.normal,
+    color: Colors.black,
   );
 
   static const textStyle16 = TextStyle(
