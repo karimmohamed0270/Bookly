@@ -15,9 +15,10 @@ class BookDetailsBody extends StatelessWidget {
           hasScrollBody: false,
           child: Column(
             children: [
+              // upper section to button action
               BookDetailsUpperSection(),
               SizedBox(height: 10),
-
+              // similair books
               BookDetailsLowersection(),
             ],
           ),
