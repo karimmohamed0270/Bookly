@@ -1,7 +1,6 @@
 import 'package:bookly_app/constants.dart';
-import 'package:bookly_app/features/splash/presentation/views/splash_screen.dart';
+import 'package:bookly_app/core/utils/routers.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -13,7 +12,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp.router(
+      // in utils the path for each screen to navigate
+      routerConfig: AppRouters.router,
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: kPrimaryColor,
@@ -21,8 +22,6 @@ class MyApp extends StatelessWidget {
         // ThemeData.dark().textTheme write only in the dark theme
         textTheme: GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme),
       ),
-
-      home: SplashScreen(),
     );
   }
 }
