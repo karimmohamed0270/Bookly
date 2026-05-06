@@ -1,5 +1,6 @@
 import 'package:bookly_app/core/utils/assets.dart';
 import 'package:bookly_app/core/utils/styles.dart';
+import 'package:bookly_app/features/home/presentation/views/widgets/bbok_action.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/best_seller_rating.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/bookdetails_appbar.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +48,11 @@ class BookDetailsBody extends StatelessWidget {
         const SizedBox(height: 5),
         // rating
         BestSellerRating(),
+        const SizedBox(height: 8),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 38),
+          child: BookAction(),
+        ),
       ],
     );
   }
