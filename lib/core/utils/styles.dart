@@ -17,7 +17,7 @@ abstract class Styles {
   );
 
   static const textStyle30 = TextStyle(
-    fontSize: 20,
+    fontSize: 30,
     fontWeight: FontWeight.normal,
     fontFamily: kanotherfontFamily,
   );
