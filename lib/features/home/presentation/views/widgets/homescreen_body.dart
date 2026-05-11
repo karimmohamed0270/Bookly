@@ -33,19 +33,18 @@ class HomeScreenBody extends StatelessWidget {
   }
 }
 
-
-      // body: Column(
-      //   crossAxisAlignment: CrossAxisAlignment.start,
-      //   children: [
-      //     CustomAppBar(),
-      //     SizedBox(height: 5),
-      //     BookCardListview(),
-      //     SizedBox(height: 5),
-      //     Padding(
-      //       padding: EdgeInsets.only(left: 14.0, top: 8.0),
-      //       child: Text("Best Seller", style: Styles.textSize18),
-      //     ),
-      //     SizedBox(height: 10),
-      //     BestSellerItemListview(),
-      //   ],
-      // ),
+// body: Column(
+//   crossAxisAlignment: CrossAxisAlignment.start,
+//   children: [
+//     CustomAppBar(),
+//     SizedBox(height: 5),
+//     BookCardListview(),
+//     SizedBox(height: 5),
+//     Padding(
+//       padding: EdgeInsets.only(left: 14.0, top: 8.0),
+//       child: Text("Best Seller", style: Styles.textSize18),
+//     ),
+//     SizedBox(height: 10),
+//     BestSellerItemListview(),
+//   ],
+// ),
