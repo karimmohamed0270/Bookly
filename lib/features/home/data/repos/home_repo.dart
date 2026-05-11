@@ -1,4 +1,9 @@
+import 'package:bookly_app/core/errors/faliures.dart';
+import 'package:bookly_app/features/home/data/models/book/book.dart';
+import 'package:dartz/dartz.dart';
+
 abstract class HomeRepo {
-  fetchBestSellerBooks();
-  fetchFeaturedBooks();
+  // the return type is either faliures or list of books
+  Future<Either<Faliures, List<BookModel>>> fetchBestSellerBooks();
+  Future<Either<Faliures, List<BookModel>>> fetchFeaturedBooks();
 }
