@@ -4,6 +4,6 @@ import 'package:dartz/dartz.dart';
 
 abstract class HomeRepo {
   // the return type is either faliures or list of books
-  Future<Either<Faliures, List<BookModel>>> fetchBestSellerBooks();
+  Future<Either<Faliures, List<BookModel>>> fetchBestNewestBooks();
   Future<Either<Faliures, List<BookModel>>> fetchFeaturedBooks();
 }
