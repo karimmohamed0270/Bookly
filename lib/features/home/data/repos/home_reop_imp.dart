@@ -9,10 +9,11 @@ class HomeRepoImp extends HomeRepo {
   final Apiservice  apiservice;
   HomeRepoImp(this.apiservice);
   @override
-  Future<Either<Faliures, List<BookModel>>> fetchBestSellerBooks() async{
+  Future<Either<Faliures, List<BookModel>>> fetchBestNewestBooks() async{
 try{
-      var data= await apiservice.get(endPoint: 'volumes?q=Programming&filter=free-ebooks&key=AIzaSyAvmfCN8XYVRNIEFj_zlrV6yspj493pOvA')
+      var data= await apiservice.get(endPoint: 'volumes?q=Programming&filter=free-ebooks&Sorting=newest&key=AIzaSyAvmfCN8XYVRNIEFj_zlrV6yspj493pOvA')
     List<BookModel> books = [];
+    // 'items' that the name of the list in api response in postman that contains the list of books
     for (var item in data['items']) {
       books.add(BookModel.fromJson(item));
     }
