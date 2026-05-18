@@ -47,7 +47,7 @@ class BookDetailsUpperSection extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         // rating
-        BestSellerRating(),
+        BestSellerRating(year: "2020"),
         const SizedBox(height: 8),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 38),

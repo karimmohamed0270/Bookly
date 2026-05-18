@@ -11,7 +11,7 @@ class BookCardListview extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FeaturedBooksCubit, FeaturedBooksState>(
       builder: (context, state) {
-        print(state.runtimeType);
+        print(state);
         if (state is FeaturedBooksSuccess) {
           return SizedBox(
             height: MediaQuery.of(context).size.height * 0.3,

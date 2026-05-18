@@ -4,20 +4,13 @@ import 'package:bookly_app/core/utils/service_locator_gitit.dart';
 import 'package:bookly_app/features/home/data/repos/home_reop_imp.dart';
 import 'package:bookly_app/features/home/presentation/views_model/cubits/featured_book_cubit/featured_books_cubit.dart';
 import 'package:bookly_app/features/home/presentation/views_model/cubits/newest_book_cubit/newest_books_cubit.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   setup();
-
-  runApp(
-    DevicePreview(
-      enabled: true, // set false in release
-      builder: (context) => const MyApp(),
-    ),
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -32,24 +25,21 @@ class MyApp extends StatelessWidget {
               FeaturedBooksCubit(getIt.get<HomeRepoImp>())
                 ..fetchFeaturedBooks(),
         ),
+
         BlocProvider(
           create: (context) =>
               NewestBooksCubit(getIt.get<HomeRepoImp>())..fetchNewestBooks(),
         ),
       ],
+
       child: MaterialApp.router(
         routerConfig: AppRouters.router,
 
         debugShowCheckedModeBanner: false,
 
-        // 👇 IMPORTANT: add this line
-        locale: DevicePreview.locale(context),
-
-        // 👇 IMPORTANT: add this builder
-        builder: DevicePreview.appBuilder,
-
         theme: ThemeData.dark().copyWith(
           scaffoldBackgroundColor: kPrimaryColor,
+
           textTheme: GoogleFonts.montserratTextTheme(
             ThemeData.dark().textTheme,
           ),

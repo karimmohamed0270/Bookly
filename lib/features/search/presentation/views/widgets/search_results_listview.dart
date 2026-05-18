@@ -10,7 +10,8 @@ class SearchResultsListview extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.85,
       child: ListView.builder(
         itemBuilder: (context, index) {
-          return BestSellerItem();
+          // return BestSellerItem(
+          // );
         },
         itemCount: 10,
       ),
