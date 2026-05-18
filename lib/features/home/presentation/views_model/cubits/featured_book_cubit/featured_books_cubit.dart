@@ -14,7 +14,7 @@ class FeaturedBooksCubit extends Cubit<FeaturedBooksState> {
 
   // create the fun and the imp i will get it from rep
 
-  Future<void> featchFeauredBooks() async {
+  Future<void> fetchFeaturedBooks() async {
     // intial state
     emit(FeaturedBooksLoading());
 

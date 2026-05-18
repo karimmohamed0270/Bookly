@@ -11,26 +11,42 @@ class BookCardListview extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FeaturedBooksCubit, FeaturedBooksState>(
       builder: (context, state) {
-        // success
+        print(state.runtimeType);
         if (state is FeaturedBooksSuccess) {
           return SizedBox(
-            // add sized box and fixed height because there are listview inside column
-            // take 0.3 of the hieght of the screen
             height: MediaQuery.of(context).size.height * 0.3,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
+              itemCount: state.books.length,
+              // itemBuilder: (context, index) {
+              //   final imageUrl =
+              //       state.books[index].volumeInfo.imageLinks.thumbnail;
+
+              //   // print(imageUrl);
+
+              //   return Padding(
+              //     padding: const EdgeInsets.symmetric(horizontal: 8),
+              //     child: BookCard(imageUrl: imageUrl),
+              //   );
+              // },
               itemBuilder: (context, index) {
+                String imageUrl =
+                    state.books[index].volumeInfo.imageLinks?.thumbnail ?? '';
+
+                imageUrl = imageUrl
+                    .replaceAll('http://', 'https://')
+                    .replaceAll('&zoom=1', '&zoom=0');
+
+                print(imageUrl);
+
                 return Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                  child: BookCard(),
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: BookCard(imageUrl: imageUrl),
                 );
               },
-              itemCount: 10,
             ),
           );
-        }
-        // failure and loading state
-        else if (state is FeaturedBooksFailure) {
+        } else if (state is FeaturedBooksFailure) {
           return Errorswidget(errorMes: state.errMsg);
         } else {
           return const Center(child: CircularProgressIndicator());

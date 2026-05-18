@@ -19,7 +19,7 @@ class BestSellerItem extends StatelessWidget {
         child: Container(
           // for testing only to see the size of the container
           // color: Colors.red.withOpacity(0.2),
-          height: MediaQuery.of(context).size.width * 0.25,
+          height: MediaQuery.of(context).size.width * 0.35,
           child: Row(
             children: [
               AspectRatio(

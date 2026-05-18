@@ -14,18 +14,18 @@ class NewestBooksCubit extends Cubit<NewestBooksState> {
 
   // create the fun and the imp i will get it from rep
 
-  Future<void> featchFeauredBooks() async {
+  Future<void> fetchNewestBooks() async {
     // intial state
-    emit(FeaturedBooksLoading());
+    emit(NewestBooksLoading());
 
     var result = await homeRepo.fetchBestNewestBooks();
 
     result.fold(
       (failure) {
-        emit(FeaturedBooksFailure(failure.errormessage));
+        emit(NewestBooksFailure(failure.errormessage));
       },
       (books) {
-        emit(FeaturedBooksSuccess(books));
+        emit(NewestBooksSuccess(books));
       },
     );
   }
