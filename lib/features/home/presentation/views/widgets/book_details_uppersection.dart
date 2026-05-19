@@ -1,37 +1,45 @@
 import 'package:bookly_app/core/utils/assets.dart';
 import 'package:bookly_app/core/utils/styles.dart';
+import 'package:bookly_app/features/home/data/models/book/book.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/bbok_action.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/best_seller_rating.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/bookdetails_appbar.dart';
 import 'package:flutter/material.dart';
 
 class BookDetailsUpperSection extends StatelessWidget {
-  const BookDetailsUpperSection({super.key});
+  const BookDetailsUpperSection({super.key, required this.bookModel});
+
+  final BookModel bookModel;
 
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
+
+    // replace http with https
+    final imageUrl = (bookModel.volumeInfo?.imageLinks?.thumbnail ?? '')
+        .replaceFirst('http://', 'https://');
+
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
           child: BookDetailsAppBar(),
         ),
-        //  image
+
+        // image
         Padding(
           padding: EdgeInsets.symmetric(horizontal: width * .32),
           child: AspectRatio(
-            // add padding because the image is too big and we want to make it smaller and also to make it responsive to different screen sizes
-            // aspect ratio take percentage from the  width
-            // if i dont give it awidth depend on padding it will take all the available space and it will be too big and not responsive
             aspectRatio: 2.7 / 4,
             child: Container(
               decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
                 image: DecorationImage(
-                  image: AssetImage(AssetsData.testBook),
+                  image: imageUrl.isNotEmpty
+                      ? NetworkImage(imageUrl)
+                      : const AssetImage(AssetsData.testBook) as ImageProvider,
                   fit: BoxFit.fill,
                 ),
-                borderRadius: BorderRadius.circular(16),
               ),
             ),
           ),
@@ -40,15 +48,26 @@ class BookDetailsUpperSection extends StatelessWidget {
         // title and subtitle
         const SizedBox(height: 10),
 
-        Text("Jaratin Roles", style: Styles.textStyle30),
         Text(
-          "Amr Abadien",
+          bookModel.volumeInfo?.title ?? "No Title",
+          style: Styles.textStyle30,
+          textAlign: TextAlign.center,
+        ),
+
+        Text(
+          bookModel.volumeInfo?.authors?[0] ?? "No Author",
           style: Styles.textSize18.copyWith(color: Colors.grey),
         ),
+
         const SizedBox(height: 5),
+
         // rating
-        BestSellerRating(year: "2020"),
+        BestSellerRating(
+          year: bookModel.volumeInfo?.publishedDate ?? "No Date",
+        ),
+
         const SizedBox(height: 8),
+
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 38),
           child: BookAction(),

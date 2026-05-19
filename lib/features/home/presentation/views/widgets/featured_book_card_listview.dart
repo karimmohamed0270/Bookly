@@ -3,6 +3,7 @@ import 'package:bookly_app/features/home/presentation/views/widgets/featured_boo
 import 'package:bookly_app/features/home/presentation/views_model/cubits/featured_book_cubit/featured_books_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class BookCardListview extends StatelessWidget {
   const BookCardListview({super.key});
@@ -31,7 +32,7 @@ class BookCardListview extends StatelessWidget {
               // },
               itemBuilder: (context, index) {
                 String imageUrl =
-                    state.books[index].volumeInfo.imageLinks?.thumbnail ?? '';
+                    state.books[index].volumeInfo?.imageLinks?.thumbnail ?? '';
 
                 imageUrl = imageUrl
                     .replaceAll('http://', 'https://')
@@ -41,7 +42,14 @@ class BookCardListview extends StatelessWidget {
 
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: BookCard(imageUrl: imageUrl),
+                  child: GestureDetector(
+                    onTap: () {
+                      GoRouter.of(
+                        context,
+                      ).push('/bookdetails', extra: state.books[index]);
+                    },
+                    child: BookCard(imageUrl: imageUrl),
+                  ),
                 );
               },
             ),

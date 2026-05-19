@@ -16,13 +16,14 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<SimilarBookCubitCubit>(
-      context,
-    ).fetchSimilarBooks(category: widget.bookmodel.volumeInfo.categories![0]);
+    BlocProvider.of<SimilarBookCubitCubit>(context).fetchSimilarBooks(
+      category:
+          widget.bookmodel.volumeInfo?.categories?.first ?? "Unknown Category",
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: BookDetailsBody());
+    return Scaffold(body: BookDetailsBody(bookModel: widget.bookmodel));
   }
 }

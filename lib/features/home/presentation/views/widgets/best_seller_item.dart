@@ -12,7 +12,7 @@ class BestSellerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final imageUrl = (bookModel.volumeInfo.imageLinks?.thumbnail ?? '')
+    final imageUrl = (bookModel.volumeInfo?.imageLinks?.thumbnail ?? '')
         .replaceFirst('http://', 'https://');
 
     return Padding(
@@ -52,7 +52,7 @@ class BestSellerItem extends StatelessWidget {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * .5,
                       child: Text(
-                        bookModel.volumeInfo.title ?? "No Title",
+                        bookModel.volumeInfo?.title ?? "No Title",
                         style: Styles.textStyle20,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -64,7 +64,8 @@ class BestSellerItem extends StatelessWidget {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * .5,
                       child: Text(
-                        bookModel.volumeInfo.authors?.first ?? "Unknown Author",
+                        bookModel.volumeInfo?.authors?.first ??
+                            "Unknown Author",
                         maxLines: 1,
                         style: Styles.textStyle16.copyWith(color: Colors.grey),
                       ),
@@ -80,8 +81,7 @@ class BestSellerItem extends StatelessWidget {
 
                         BestSellerRating(
                           year:
-                              bookModel.volumeInfo.publishedDate ??
-                              "Unknown Date",
+                              bookModel.volumeInfo?.publishedDate ?? "Unknown ",
                         ),
                       ],
                     ),

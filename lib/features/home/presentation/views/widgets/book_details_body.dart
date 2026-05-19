@@ -1,10 +1,12 @@
+import 'package:bookly_app/features/home/data/models/book/book.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/book_details_lowersection.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/book_details_uppersection.dart';
 
 import 'package:flutter/material.dart';
 
 class BookDetailsBody extends StatelessWidget {
-  const BookDetailsBody({super.key});
+  const BookDetailsBody({super.key, required this.bookModel});
+  final BookModel bookModel;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class BookDetailsBody extends StatelessWidget {
           child: Column(
             children: [
               // upper section to button action
-              BookDetailsUpperSection(),
+              BookDetailsUpperSection(bookModel: bookModel),
               SizedBox(height: 10),
               // similair books
               BookDetailsLowersection(),
