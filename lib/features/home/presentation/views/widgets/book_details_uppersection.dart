@@ -70,7 +70,7 @@ class BookDetailsUpperSection extends StatelessWidget {
 
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 38),
-          child: BookAction(),
+          child: BookAction(bookmodel: bookModel),
         ),
       ],
     );
