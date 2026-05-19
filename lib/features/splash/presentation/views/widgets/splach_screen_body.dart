@@ -38,7 +38,8 @@ class _SplachScreenBodyState extends State<SplachScreenBody>
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(AssetsData.logo),
+          // Image.asset(AssetsData.logo),
+          Image.asset('assets/images/logo.png', height: 50),
           SizedBox(height: 8),
 
           // animated builder to build the animation only not rebuild all screen

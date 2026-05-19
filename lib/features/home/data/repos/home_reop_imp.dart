@@ -14,7 +14,7 @@ class HomeRepoImp extends HomeRepo {
     try {
       var data = await apiservice.get(
         endPoint:
-            'volumes?q=Programming&filter=free-ebooks&Sorting=newest&key=AIzaSyAvmfCN8XYVRNIEFj_zlrV6yspj493pOvA',
+            'volumes?q=science fiction&filter=free-ebooks&Sorting=newest&key=AIzaSyAvmfCN8XYVRNIEFj_zlrV6yspj493pOvA',
       );
       List<BookModel> books = [];
       // 'items' that the name of the list in api response in postman that contains the list of books
@@ -39,6 +39,34 @@ class HomeRepoImp extends HomeRepo {
       var data = await apiservice.get(
         endPoint:
             'volumes?q=Programming&filter=free-ebooks&key=AIzaSyAvmfCN8XYVRNIEFj_zlrV6yspj493pOvA',
+      );
+      List<BookModel> books = [];
+      // 'items' that the name of the list in api response in postman that contains the list of books
+      for (var item in data['items']) {
+        books.add(BookModel.fromJson(item));
+      }
+      return Right(books);
+    } catch (e) {
+      if (e is DioException) {
+        return Left(ServerFaliures.fromDioError(e));
+      }
+      // another type of error that is not from dio package
+      else {
+        return Left(ServerFaliures(e.toString()));
+      }
+    }
+  }
+
+  // fetch similar books based on the category of the book that the user clicked on
+
+  @override
+  Future<Either<Faliures, List<BookModel>>> fetchSimilarBooks({
+    required String category,
+  }) async {
+    try {
+      var data = await apiservice.get(
+        endPoint:
+            'volumes?q=$category&filter=free-ebooks&key=AIzaSyAvmfCN8XYVRNIEFj_zlrV6yspj493pOvA',
       );
       List<BookModel> books = [];
       // 'items' that the name of the list in api response in postman that contains the list of books
